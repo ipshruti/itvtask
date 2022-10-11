@@ -1,11 +1,15 @@
+import click as click
 import pandas as pd
 
 from src.constants import CSVColumns, DATA_FILE, OUTPUT_FILE
 from src.transformations import apply_transformation, infer_gender, find_daily_hours_watched
 
 
-def main():
-    df = pd.read_csv(DATA_FILE)
+@click.command()
+@click.option('--input-csv', default=DATA_FILE, help='Path of input csv')
+@click.option('--output-csv', default=OUTPUT_FILE, help='Path to save the output csv')
+def main(input_csv, output_csv):
+    df = pd.read_csv(input_csv)
     df_gender_inferred = apply_transformation(
         transform_func=infer_gender,
         df=df,
@@ -18,7 +22,7 @@ def main():
         column_name=CSVColumns.daily_hours.value
         ,
     )
-    df_with_daily_hours.to_csv(OUTPUT_FILE, index=False)
+    df_with_daily_hours.to_csv(output_csv, index=False)
 
 
 if __name__ == '__main__':
