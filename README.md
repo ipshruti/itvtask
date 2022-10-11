@@ -43,3 +43,16 @@ One of your data pipelines is defined as follows:
  
 - User_id - integer - length 10
 - Title - string - Possible values [Mrs, Mr, Ms]
+- Age - int - length up to 3
+- Monthly_number_of_hours_watched - decimal with 2 digit precision - from 0.00 to
+  744 (24 hour per day for 31 days)
+  The 1st transformation takes the title and infer the gender of the users :
+- If Mrs or Ms return female
+- If Mr return male
+  The 2nd transformation creates an additional column called
+  “daily_number_of_hours_watched” by dividing the Monthly_number_of_hours_watched by
+  30
+  a) Write a python function for each transformation and test them (unit testing) using the
+  module of your choice.
+  b) Create 1 slide where you explain how you will perform end to end testing for this
+  pipeline
