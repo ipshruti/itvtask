@@ -1,5 +1,31 @@
 # ITV Task
 
+# Installation
+
+- Create a Python Virtualenv on Python 3.9
+- Install requirements
+
+```bash
+pip install -r requirements.txt
+```
+
+- Run ETL pipeline
+
+```bash
+PYTHONPATH='.' python src/etl.py --input-csv data/sample.csv --output-csv data/output.csv
+```
+
+You can pass your csv using the `input-csv` parameter. A sample csv has been provided
+in `data/sample.csv` for quick testing.
+
+# Running tests
+
+We use `pytest` for running tests. Running tests is as easy as running the following command:
+
+```bash
+pytest -v
+```
+
 # Problem Statement
 
 ## Question 1 : Bash Scripting
