@@ -1,20 +1,23 @@
 import pandas as pd
 
+from src.constants import CSVColumns, Gender
+
 
 def infer_gender(row):
-    if row["Title"] == "Mr":
-        return "male"
-    elif row["Title"] in ["Mrs", "Ms"]:
-        return "female"
+    title = row[CSVColumns.title.value]
+    if title == "Mr":
+        return Gender.male.value
+    elif title in ["Mrs", "Ms"]:
+        return Gender.female.value
     else:
-        raise ValueError(f'Invalid Title: {row["Title"]}')
+        raise ValueError(f'Invalid Title: {title}')
 
 
 def find_daily_hours_watched(row):
-    monthly_hours = row["Monthly_number_of_hours_watched"]
+    monthly_hours = row[CSVColumns.monthly_hours.value]
     if monthly_hours < 0 or monthly_hours > 744:
-        raise ValueError("Monthly_number_of_hours_watched must be between 0 to 744, inclusive")
-    return round(row["Monthly_number_of_hours_watched"] / 30, 2)
+        raise ValueError(f"{CSVColumns.monthly_hours.value} must be between 0 to 744, inclusive")
+    return round(row[CSVColumns.monthly_hours.value] / 30, 2)
 
 
 def apply_transformation(transform_func, df, column_name, update_column=True):
