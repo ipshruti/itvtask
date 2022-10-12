@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [[ -z "${REPO_URL_PREFIX}" ]]; then REPO_URL_PREFIX="https://github.com/ipshruti"; fi
+if [[ -z "${REPO_URL_PREFIX}" ]]; then REPO_URL_PREFIX="git@github.com:ipshruti"; fi
 if [[ -z "${REPO_NAME}" ]]; then REPO_NAME="viewing_product"; fi
 if [[ -z "${S3_UPLOAD_PATH}" ]]; then S3_UPLOAD_PATH="s3://data_product_artefact/viewing_product/"; fi
 if [[ -z "${RUN_TEST_COMMAND}" ]]; then RUN_TEST_COMMAND="python -m unittest discover test/"; fi
@@ -13,8 +13,9 @@ log () {
 }
 
 clone_repo () {
-  log "Cloning repository"
-  git clone $REPO_URL_PREFIX/"$REPO_NAME".git
+  REPO_URL=$REPO_URL_PREFIX/"$REPO_NAME".git
+  log "Cloning repository: $REPO_URL"
+  git clone $REPO_URL
   pushd "$REPO_NAME" || exit
 }
 

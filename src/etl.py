@@ -9,6 +9,14 @@ from src.transformations import apply_transformation, infer_gender, find_daily_h
 @click.option('--input-csv', default=DATA_FILE, help='Path of input csv')
 @click.option('--output-csv', default=OUTPUT_FILE, help='Path to save the output csv')
 def main(input_csv, output_csv):
+    """
+    Main entrypoint for using the CLI to run the full pipeline
+    with all the transformations. This will run the pipeline
+    and save the out in the output csv.
+    :param input_csv: input csv to extract and transform
+    :param output_csv: path to save the final csv
+    :return: None
+    """
     df = pd.read_csv(input_csv)
     df_gender_inferred = apply_transformation(
         transform_func=infer_gender,

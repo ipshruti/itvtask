@@ -1,6 +1,10 @@
 # ITV Task
 
-# Installation
+[![Python Task](https://github.com/ipshruti/itvtask/actions/workflows/python_task.yml/badge.svg?branch=main)](https://github.com/ipshruti/itvtask/actions/workflows/python_task.yml?query=workflow%3ABuild+branch%3Amain)
+[![Python Task](https://github.com/ipshruti/itvtask/actions/workflows/bash_task.yml/badge.svg?branch=main)](https://github.com/ipshruti/itvtask/actions/workflows/bash_task.yml?query=workflow%3ABuild+branch%3Amain)
+
+
+# Python Task: Installation
 
 - Create a Python Virtualenv on Python 3.9
 - Install requirements
@@ -18,13 +22,50 @@ PYTHONPATH='.' python src/etl.py --input-csv data/sample.csv --output-csv data/o
 You can pass your csv using the `input-csv` parameter. A sample csv has been provided
 in `data/sample.csv` for quick testing.
 
-# Running tests
+## Running tests
 
 We use `pytest` for running tests. Running tests is as easy as running the following command:
 
 ```bash
 pytest -v
 ```
+
+# Bash Task: Usage
+
+- Set the following environment variables:
+
+```bash
+REPO_URL_PREFIX=<your-REPO_URL_PREFIX>
+REPO_NAME=<your-REPO_NAME>
+S3_UPLOAD_PATH=<your-S3_UPLOAD_PATH>
+RUN_TEST_COMMAND=<your-RUN_TEST_COMMAND>
+AWS_ACCESS_KEY_ID=<your-AWS_ACCESS_KEY_ID>
+AWS_SECRET_ACCESS_KEY=<your-AWS_SECRET_ACCESS_KEY>
+AWS_DEFAULT_REGION=<your-AWS_DEFAULT_REGION>
+```
+
+- Run the following command:
+
+```bash
+./scripts/test_and_deploy_viewing_product.sh
+```
+
+# **Important Note**: Working Demo in the CI
+
+To verify that above mentioned code for bash task and python task works, I have
+set up a working demo in the GitHub Actions CI:
+
+- Sample runs can be seen here: https://github.com/ipshruti/itvtask/actions
+  - Bash Task: https://github.com/ipshruti/itvtask/actions/runs/3231496954/jobs/5291097697#step:4:1
+  - Python Task: https://github.com/ipshruti/itvtask/actions/runs/3231496952/jobs/5291087516#step:5:1
+- CI Configuration files here: https://github.com/ipshruti/itvtask/tree/main/.github/workflows
+
+
+# E2E Testing slide:
+
+E2E Testing slide can be seen at the root of the repository here:
+https://github.com/ipshruti/itvtask/blob/main/e2e_testing.pdf
+
 
 # Problem Statement
 
